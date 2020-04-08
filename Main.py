@@ -28,7 +28,7 @@ def view():
 def saveDetails():
 	column=[]
 	tablename = request.form["tab"]
-	con = sqlite3.connect("Database01.db")
+	con = sqlite3.connect(Database)
 	con.row_factory = sqlite3.Row
 	cur = con.cursor()
 	cur.execute("select * from {0}".format(tablename))
