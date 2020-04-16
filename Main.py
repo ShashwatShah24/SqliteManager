@@ -4,12 +4,13 @@ import sqlite3
 app = Flask(__name__)  
 
 @app.route("/")  
-def index():  
-    return render_template("home.html");
+def index():
+	return render_template("view.html")
 
 
 @app.route("/view",methods =["POST"])  
-def view():  
+def view():
+	global tables
 	tables=[]
 	global Database
 	Database = request.form["db"]
@@ -46,12 +47,9 @@ def saveDetails():
 			Details.append(Allrow[k])
 		CompleteDet.append(Details)
 	print(CompleteDet)
-	return render_template("viewTable.html",column=column,rows=rows,columnlength=columnlength,CompleteDet=CompleteDet,tablename=tablename) 
+	return render_template("view.html",tables = tables,Database=Database,column=column,rows=rows,columnlength=columnlength,CompleteDet=CompleteDet,tablename=tablename) 
 
 
-# @app.route("/view02")  
-# def view():
-# 	host =""
 
 if __name__ == "__main__":
 	app.run(host='127.0.0.1', port=9090)  
