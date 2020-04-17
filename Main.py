@@ -46,7 +46,6 @@ def saveDetails():
 		for k in range(0,columnlength):
 			Details.append(Allrow[k])
 		CompleteDet.append(Details)
-	print(CompleteDet)
 	return render_template("view.html",tables = tables,Database=Database,column=column,rows=rows,columnlength=columnlength,CompleteDet=CompleteDet,tablename=tablename) 
 
 
