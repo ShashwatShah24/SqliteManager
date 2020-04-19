@@ -55,10 +55,21 @@
 
         <h5 style="margin-top: 35px; text-align: left;padding-left: 50px;">Database : {{Database}}</h5>
 
-        <h5 style="margin-top: 35px; text-align: left;padding-left: 50px;"> Tables</h5>
+        <h5 style="margin-top: 35px; text-align: left;padding-left: 50px;">All Tables</h5>
         <table id="tbl" class="table  table-hover" style="margin-top: 25px;width:300px;">
           <thead>
             {% for i in tables %}
+            <tr>
+              <th> {{ i }} </th>
+            </tr>
+            {% endfor %}
+
+          </thead>
+        </table>
+        <h5 style="margin-top: 5px;  text-align: left">{{tablename}}</h5>
+        <table id="tbl" class="table  table-hover" style="background-color: darkolivegreen;">
+          <thead>
+            {% for i in column %}
             <tr>
               <th> {{ i }} </th>
             </tr>
