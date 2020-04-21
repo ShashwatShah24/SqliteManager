@@ -16,7 +16,7 @@
 
 <body style="background-color:greenyellow ; text-align: center">
 
-  <nav class="navbar navbar-expand-sm bg-light navbar-light" style="margin-top: 50px;">
+  <nav class="navbar navbar-expand-sm bg-light navbar-light" style="margin-top: 30px;height:50px;">
     <!-- Brand/logo -->
     <a class="navbar-brand" href="#">
       <img src="/static/airtel-logo-white-text-horizontal.jpg" alt="logo" style="width:100px;">
@@ -33,7 +33,7 @@
 
   <div class="container-fluid">
     <div class="row content">
-      <div class="col-sm-3 sidenav">
+      <div class="col-sm-2 sidenav">
 
 
         <div class="container">
@@ -42,7 +42,7 @@
             <div class="form-group">
               <label class="control-label col-sm-12" for="tab" style="padding-top:15px">Database name:</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="db" placeholder="Ex: Database.db" name="db">
+                <input type="text" class="form-control" id="db" placeholder="Database.db" name="db">
               </div>
             </div>
 
@@ -53,10 +53,10 @@
 
         </div>
 
-        <h5 style="margin-top: 35px; text-align: left;padding-left: 50px;">Database : {{Database}}</h5>
+        <h5 style="margin-top: 35px; text-align: left;">Database : {{Database}}</h5>
 
-        <h5 style="margin-top: 35px; text-align: left;padding-left: 50px;">All Tables</h5>
-        <table id="tbl" class="table  table-hover" style="margin-top: 25px;width:300px;">
+        <h5 style="margin-top: 35px; text-align: left;">All Tables</h5>
+        <table id="tbl" class="table  table-hover">
           <thead>
             {% for i in tables %}
             <tr>
@@ -99,7 +99,7 @@
           <script>
             $(document).ready(function () {
               // Setup - add a text input to each footer cell
-              $('#example tfoot th').each(function () {
+              $('#example thead th').each(function () {
                 var title = $(this).text();
                 $(this).html('<input type="text" placeholder="Search ' + title + '" />');
               });
@@ -111,7 +111,7 @@
               table.columns().every(function () {
                 var that = this;
 
-                $('input', this.footer()).on('keyup change clear', function () {
+                $('input', this.header()).on('keyup change clear', function () {
                   if (that.search() !== this.value) {
                     that
                       .search(this.value)
@@ -125,7 +125,7 @@
           </script>
 
           <style>
-            tfoot input {
+            thead input {
               width: 100%;
               padding: 3px;
               box-sizing: border-box;
@@ -138,8 +138,8 @@
 
         </div>
       </div>
-      <div class="col-sm-9">
-        <h3 style="margin-top: 10px;  text-align: center"> {{tablename}}</h3>
+      <div class="col-sm-10">
+        <h3 style="margin-top: 10px;  text-align: center"></h3>
         <table id="example" class="table  table-hover" style="margin-top: 50px">
           <thead>
             <tr>
@@ -148,6 +148,13 @@
               {% endfor %}
             </tr>
           </thead>
+          <tfoot>
+            <tr>
+              {% for i in column %}
+              <th>{{ i }}</th>
+              {% endfor %}
+            </tr>
+          </tfoot>
           <tbody>
             {% for q in CompleteDet %}
             <tr>
@@ -157,13 +164,7 @@
             </tr>
             {% endfor %}
           </tbody>
-          <tfoot>
-            <tr>
-              {% for i in column %}
-              <th>{{ i }}</th>
-              {% endfor %}
-            </tr>
-          </tfoot>
+
         </table>
       </div>
     </div>
