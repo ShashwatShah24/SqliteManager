@@ -104,7 +104,7 @@
           <script>
             $(document).ready(function () {
               // Setup - add a text input to each footer cell
-              $('#example thead th').each(function () {
+              $('#example tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<input type="text" placeholder="Search ' + title + '" />');
               });
@@ -116,7 +116,7 @@
               table.columns().every(function () {
                 var that = this;
 
-                $('input', this.header()).on('keyup change clear', function () {
+                $('input', this.footer()).on('keyup change clear', function () {
                   if (that.search() !== this.value) {
                     that
                       .search(this.value)
@@ -130,7 +130,7 @@
           </script>
 
           <style>
-            thead input {
+            tfoot input {
               width: 100%;
               padding: 3px;
               box-sizing: border-box;
