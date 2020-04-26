@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="css/addons/datatables.min.css" rel="stylesheet">
+  <script type="text/javascript" src="js/addons/datatables.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -14,7 +16,7 @@
   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 </head>
 
-<body style="background-color:#EE1C25; text-align: center;color:black;">
+<body style="background-color:#EE1C25;color:black;">
 
   <nav class="navbar navbar-expand-sm bg-light navbar-light" style="margin-top: 30px;height:50px;">
     <!-- Brand/logo -->
@@ -26,7 +28,8 @@
         <a class="nav-link" href="/" style=" color: #000;">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/return-files/" target="blank" style=" padding-left: 5px;border: 2px solid red; color: #000;">Download Csv</a>
+        <a class="nav-link" href="/return-files/" target="blank"
+          style=" padding-left: 5px;border: 2px solid red; color: #000;">Download Csv</a>
       </li>
     </ul>
 
@@ -34,7 +37,7 @@
 
   </div>
 
-  
+
 
   <div class="container-fluid">
     <div class="row content">
@@ -52,7 +55,8 @@
             </div>
 
             <div class="text-center">
-              <button type="submit" class="btn btn-default float" style="border: 2px solid red; color: #000;">Submit</button>
+              <button type="submit" class="btn btn-default float"
+                style="border: 2px solid red; color: #000;">Submit</button>
             </div>
           </form>
 
@@ -109,8 +113,13 @@
                 $(this).html('<input type="text" placeholder="Search ' + title + '" />');
               });
 
-              // DataTable
+              $('#example').DataTable({
+                "scrollY": 200,
+                "scrollX": true
+              });
+              // $('.dataTables_length').addClass('bs-select');
               var table = $('#example').DataTable();
+
 
               // Apply the search
               table.columns().every(function () {
@@ -125,27 +134,40 @@
                 });
               });
 
+              // DataTable
+
+
+
+
+
               $('#datatableId tfoot tr').appendTo('#datatableId thead');
-            });  
+            });
+
           </script>
 
           <style>
             tfoot input {
-              width: 100%;
-              padding: 3px;
+              width: 75%;
               box-sizing: border-box;
+              /* padding: 3px;
+               */
             }
 
-            tfoot {
+            /* tfoot {
               display: table-header-group;
+            } */
+
+            div.dataTables_wrapper {
+              width: 100%;
+              margin: 0 auto;
             }
+
           </style>
 
         </div>
       </div>
-      <div class="col-sm-10">
-        <h3 style="margin-top: 10px;  text-align: center"></h3>
-        <table id="example" class="table stripped table-hover" style="margin-top: 50px;background-color: red;color:black;">
+      <div class="col-sm-10 sidenav">
+        <table id="example" class="table stripped table-hover" class="display nowrap" style="width:100%; margin-top: 10px;background-color: red;color:black;">
           <thead>
             <tr>
               {% for i in column %}
@@ -153,13 +175,7 @@
               {% endfor %}
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              {% for i in column %}
-              <th>{{ i }}</th>
-              {% endfor %}
-            </tr>
-          </tfoot>
+
           <tbody>
             {% for q in CompleteDet %}
             <tr>
@@ -169,10 +185,17 @@
             </tr>
             {% endfor %}
           </tbody>
-
+          <tfoot>
+            <tr>
+              {% for i in column %}
+              <th>{{ i }}</th>
+              {% endfor %}
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>
+  </div>
 </body>
 
 </html>
