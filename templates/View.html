@@ -29,10 +29,13 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/return-files/" target="blank"
-          style=" padding-left: 5px;border: 2px solid red; color: #000;">Download Csv</a>
+          style= "color: #000;">Download Csv</a>
+      </li>
+      <li class="nav-item">
+        <button onclick="exportTableToCSV('data.csv')" class="btn btn-default float">Download Current page Csv</button>
       </li>
     </ul>
-
+    
   </nav>
 
   </div>
@@ -161,13 +164,13 @@
               width: 100%;
               margin: 0 auto;
             }
-
           </style>
 
         </div>
       </div>
       <div class="col-sm-10 sidenav">
-        <table id="example" class="table stripped table-hover" class="display nowrap" style="width:100%; margin-top: 10px;background-color: red;color:black;">
+        <table id="example" class="table stripped table-hover" class="display nowrap"
+          style="width:100%; margin-top: 10px;background-color: red;color:black;">
           <thead>
             <tr>
               {% for i in column %}
@@ -194,8 +197,125 @@
           </tfoot>
         </table>
       </div>
+
+
+      <script type="text/javascript">
+        function downloadCSV(csv, filename) {
+          var csvFile;
+          var downloadLink;
+      
+          // CSV file
+          csvFile = new Blob([csv], {type: "text/csv"});
+      
+          // Download link
+          downloadLink = document.createElement("a");
+      
+          // File name
+          downloadLink.download = filename;
+      
+          // Create a link to the file
+          downloadLink.href = window.URL.createObjectURL(csvFile);
+      
+          // Hide download link
+          downloadLink.style.display = "none";
+      
+          // Add the link to DOM
+          document.body.appendChild(downloadLink);
+      
+          // Click download link
+          downloadLink.click();
+      }
+      
+      function exportTableToCSV(filename) {
+          var csv = [];
+          var rows = document.querySelectorAll("#example tr");
+          
+          for (var i = 0; i < rows.length; i++) {
+              var row = [], cols = rows[i].querySelectorAll("td, th");
+              
+              for (var j = 0; j < cols.length; j++) 
+                  row.push(cols[j].innerText);
+              
+              csv.push(row.join(","));        
+          }
+      
+          // Download CSV file
+          downloadCSV(csv.join("\n"), filename);
+      }
+
+      // <script>
+      //    function downloadCSVStringFn(fileName = "", csvString = "") {
+
+      //       //Encode CSV data
+      //       var encodedUri = encodeURI(csvString);
+      //       //Create link 
+      //       var link = document.createElement("a");
+      //       //set attributes
+      //       link.setAttribute("href", encodedUri);
+      //       link.setAttribute("download", fileName + ".csv");
+      //       //Append in document
+      //       document.body.appendChild(link); // Required for FF
+      //       //Click .. this will download 
+      //       link.click();
+
+      //       //you can further delete the link too .. or have this is a component in case
+      //       //you have download as a reusable utility
+      //     }
+      //   function getTableDataFn() {
+      //     //we can use any of the get methods based on what we want
+      //     let reqTable = document.getElementById("example");
+      //     window.alert(reqTable.rows);
+      //     //Get rows
+      //     let rows = reqTable.rows.length;
+
+      //     //Get columns
+      //     let columns = 0;
+      //     if (rows > 0)
+      //       columns = reqTable.rows[0].cells.length;
+
+      //     let dataInArray = [];
+
+      //     let strVersionOfData = "";
+
+      //     //Loop through row and column to get data in the object
+      //     for (let r = 0; r < rows; r++) {
+      //       dataInArray[r] = [];
+      //       for (let c = 0; c < columns; c++) {
+      //         let tempData = reqTable.rows[r].cells[c].innerHTML;
+      //         dataInArray[r][c] = tempData;
+      //         strVersionOfData += tempData;
+      //         if (c != columns - 1)
+      //           strVersionOfData += ",";
+      //       }
+      //       strVersionOfData += "\n";
+
+      //     }
+      //     window.alert(rows);
+      //     window.alert(columns);
+      //     window.alert(dataInArray);
+      //     window.alert(typeof strVersionOfData);
+      //     var StrippedString = strVersionOfData.replace(/(<([^>]+)>)/ig,"");
+      //     window.alert(StrippedString);
+      //     // document.getElementById("tab").value = strVersionOfData
+      //     // document.getElementById('myform').submit();
+      //     downloadCSVStringFn(StrippedString, 'mycsv')
+      //   }
+
+      //     //Now the dataInArray has all the data and
+      //     //strVersionofData has the string
+         
+      // </script>
+     
+     
+      <!-- <form id="myform" class="form-horizontal" action="/return-files1/" method="post">
+
+        <input type="hidden" class="form-control" id="tab" name="tab">
+  
+      </form> -->
     </div>
   </div>
+
+
 </body>
 
 </html>
