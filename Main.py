@@ -58,7 +58,7 @@ def saveDetails():
 
     return render_template("view.html", tables=tables, Database=Database, column=column, rows=rows, columnlength=columnlength, CompleteDet=CompleteDet, tablename=tablename)
 
-@app.route('/return-files/', methods=["POST"])
+@app.route('/return-files/')
 def return_files_tut():
 	try:
 		return send_file('output.csv', attachment_filename='output.csv')
