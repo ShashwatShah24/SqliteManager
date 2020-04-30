@@ -16,9 +16,10 @@
   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 </head>
 
-<body style="background-color:#EE1C25;color:black;">
+<body style="background-color:white;color:black;">
 
-  <nav class="navbar navbar-expand-sm bg-light navbar-light" style="margin-top: 30px;height:50px;">
+  <div style="background:#EE1C25;">
+      <nav class="navbar navbar-expand-sm " style="height:50px;background-color:#EE1C25;">
     <!-- Brand/logo -->
     <a class="navbar-brand" href="#">
       <img src="/static/airtel-logo-white-text-horizontal.jpg" alt="logo" style="width:100px;">
@@ -32,7 +33,7 @@
           style= "color: #000;">Download Csv</a>
       </li>
       <li class="nav-item">
-        <button onclick="exportTableToCSV('data.csv')" class="btn btn-default float">Download Current page Csv</button>
+        <button onclick="exportTableToCSV('data.csv')" class="btn btn-default float"  style= "color: #000;">Download Current page Csv</button>
       </li>
     </ul>
     
@@ -59,7 +60,7 @@
 
             <div class="text-center">
               <button type="submit" class="btn btn-default float"
-                style="border: 2px solid red; color: #000;">Submit</button>
+                style="border: 2px solid #EE1C25; color: #000;">Submit</button>
             </div>
           </form>
 
@@ -79,7 +80,7 @@
           </thead>
         </table>
         <h5 style="margin-top: 5px;  text-align: left">{{tablename}}</h5>
-        <table id="tbl" class="table  table-hover" style="background-color:red;color:black;">
+        <table id="tbl" class="table  table-hover" style="background-color:#EE1C25;color:black;">
           <thead>
             {% for i in column %}
             <tr>
@@ -168,9 +169,9 @@
 
         </div>
       </div>
-      <div class="col-sm-10 sidenav">
+      <div class="col-sm-10 sidenav"  style= "margin-top: 10px;">
         <table id="example" class="table stripped table-hover" class="display nowrap"
-          style="width:100%; margin-top: 10px;background-color: red;color:black;">
+          style="width:100%; margin-top: 10px;background-color: #EE1C25;color:black;">
           <thead>
             <tr>
               {% for i in column %}
